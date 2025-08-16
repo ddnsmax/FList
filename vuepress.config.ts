@@ -1,15 +1,9 @@
 import { viteBundler } from '@vuepress/bundler-vite'
 import { defineUserConfig } from 'vuepress'
+
 import { FileList } from './src/node/index.js'
-import { githubReleasesFilesAnalysis } from "./src/node/analysis/githubReleasesFilesAnalysis/index.js";
-import { cloudflarePagesDownProxy } from "./src/node/proxy/cloudflarePagesDownProxy/index.js";
-import { fileUrlTreeAnalysis } from "./src/node/analysis/fileUrlTreeAnalysis/index.js";
-import { huggingFaceDatasetsAnalysis } from "./src/node/analysis/huggingFaceDatasetsAnalysis/index.js";
-import { vercelDownProxy } from './src/node/proxy/vercelDownProxy/index.js';
-import { netlifyDownProxy } from './src/node/proxy/netlifyDownProxy/index.js';
-import { giteeReleasesFilesAnalysis } from './src/node/analysis/giteeReleasesFilesAnalysis/index.js';
-import { githubReposAnalysis } from './src/node/analysis/githubReposAnalysis/index.js';
-import { giteeReposAnalysis } from './src/node/analysis/giteeReposAnalysis/index.js';
+import { fileUrlTreeAnalysis } from "./src/node/analysis/fileUrlTreeAnalysis/index.js"
+import { cloudflarePagesDownProxy } from "./src/node/proxy/cloudflarePagesDownProxy/index.js"
 
 export default defineUserConfig({
   bundler: viteBundler(),
@@ -22,36 +16,29 @@ export default defineUserConfig({
   shouldPrefetch: true,
 
   theme: FileList([
-    // 保留 GitHub Releases 挂载
-    {
-      mountPath: "/KnapsackToGo4下载",
-      analysis: githubReleasesFilesAnalysis({
-        user: "jianjianai",
-        repository: "KnapsackToGo4",
-        authorizationToken: process.env.githubToken,
-        per_page: 10,
-      }),
-    },
-    {
-      mountPath: "/",
-      analysis: githubReleasesFilesAnalysis({
-        user: "jianjianai",
-        repository: "FList",
-        authorizationToken: process.env.githubToken,
-      }),
-      downProxy: cloudflarePagesDownProxy(),
-    },
-
-    // ========= 手工维护文件树：目录体系 + 已归类直链 =========
+    // 只保留直链文件树，其他挂载与示例全部清除
     {
       mountPath: "/",
       analysis: fileUrlTreeAnalysis({
-        // 目录清单（空目录不会显示，添加文件后才会出现）：
+        // 你的目录体系（无文件的目录不会显示）：
         // /微信/   /游戏/   /ipa软件/   /ipa插件/
-        // /源码/   /安卓软件/   /Mac软件/   /windows/
-        // /图片/   /视频/
+        // /源码/   /安卓软件/  /Mac软件/  /windows/
+        // 额外：/图片/  /视频/
 
-        // ipa 文件
+        // ── 已有直链：按类型归类 ──────────────────────────────
+        // 图片
+        "/图片/1755376083621_4442da504356e7c1c4fac635b1b5ea6c.png":
+          "https://cloud.993613.xyz/file/1755376083621_4442da504356e7c1c4fac635b1b5ea6c.png",
+
+        // 视频（把之前示例视频都归到 /视频/ 下）
+        "/视频/test2/文件树-测试视频1.mp4":
+          "https://github.com/jianjianai/FList/releases/download/root/test.video.2.1080p.webm",
+        "/视频/文件树测试/文件树-测试视频1.mp4":
+          "https://github.com/jianjianai/FList/releases/download/root/test.video.2.1080p.webm",
+        "/视频/文件树-测试视频1.mp4":
+          "https://github.com/jianjianai/FList/releases/download/root/test.video.2.1080p.webm",
+
+        // ipa 软件
         "/ipa软件/轻松签+-5.0.2.ipa":
           "https://cloud.chenyong.eu.org/file/Z045M1SD.octet-stream",
 
@@ -59,55 +46,10 @@ export default defineUserConfig({
         "/windows/hOkcfVzT.zip":
           "https://cloud.chenyong.eu.org/file/hOkcfVzT.zip",
 
-        // 图片文件
-        "/图片/1755376083621_4442da504356e7c1c4fac635b1b5ea6c.png":
-          "https://cloud.993613.xyz/file/1755376083621_4442da504356e7c1c4fac635b1b5ea6c.png",
-
-        // 视频示例
-        "/视频/test2/文件树-测试视频1.mp4":
-          "https://github.com/jianjianai/FList/releases/download/root/test.video.2.1080p.webm",
-        "/视频/文件树测试/文件树-测试视频1.mp4":
-          "https://github.com/jianjianai/FList/releases/download/root/test.video.2.1080p.webm",
-        "/视频/文件树-测试视频1.mp4":
-          "https://github.com/jianjianai/FList/releases/download/root/test.video.2.1080p.webm",
+        // 其余目录（微信/游戏/ipa插件/源码/安卓软件/Mac软件）暂时没有现有文件，按你的要求不添加任何占位或无关链接
       }),
+      // 若直链访问慢或有 CORS 问题可保留；不是 Cloudflare Pages 可移除
       downProxy: cloudflarePagesDownProxy(),
-    },
-
-    // 其它演示挂载
-    {
-      mountPath: "/huggingface测试",
-      analysis: huggingFaceDatasetsAnalysis({
-        userName: "Open-Orca",
-        datasetsName: "OpenOrca",
-        branchName: "main",
-        path: "/",
-        maxDeep: 3
-      }),
-    },
-    {
-      mountPath: "/gitee测试/发行版",
-      analysis: giteeReleasesFilesAnalysis({
-        user: "jja8",
-        repository: "flist-test",
-        direction: "desc"
-      })
-    },
-    {
-      mountPath: "/gitee测试/仓库",
-      analysis: giteeReposAnalysis({
-        user: "jja8",
-        repository: "flist-test"
-      }),
-    },
-    {
-      mountPath: "/ProgrammingVTuberLogos",
-      analysis: githubReposAnalysis({
-        user: "Aikoyori",
-        repository: "ProgrammingVTuberLogos",
-        authorizationToken: process.env.githubToken,
-      }),
-      downProxy: cloudflarePagesDownProxy()
     },
   ])
 })
