@@ -23,8 +23,6 @@ import { giteeReposAnalysis } from './src/node/analysis/giteeReposAnalysis/index
 
 /**
  * 站点级配置
- * - 没标注“可改”的一般保持默认即可
- * - 标注“必改/可改”的按需要修改
  */
 export default defineUserConfig({
   bundler: viteBundler(),
@@ -38,7 +36,7 @@ export default defineUserConfig({
   shouldPrefetch: true,
 
   theme: FileList([
-    // ========= 示例 1：把某个 GitHub 仓库的 Releases 暴露在 /KnapsackToGo4下载 =========
+    // ========= 示例 1：GitHub Releases =========
     {
       mountPath: "/KnapsackToGo4下载",
       analysis: githubReleasesFilesAnalysis({
@@ -49,7 +47,7 @@ export default defineUserConfig({
       }),
     },
 
-    // ========= 示例 2：站点根路径 / 显示另一个 Releases 列表，并启用 Cloudflare 代理 =========
+    // ========= 示例 2：根路径 GitHub Releases + Cloudflare 代理 =========
     {
       mountPath: "/",
       analysis: githubReleasesFilesAnalysis({
@@ -60,7 +58,7 @@ export default defineUserConfig({
       downProxy: cloudflarePagesDownProxy(),
     },
 
-    // ========= 示例 3：手工维护一个小型“文件树” + 直链 ZIP =========
+    // ========= 示例 3：手工直链文件树 =========
     {
       mountPath: "/",
       analysis: fileUrlTreeAnalysis({
@@ -71,8 +69,11 @@ export default defineUserConfig({
         "/文件树-测试视频1.mp4":
           "https://github.com/jianjianai/FList/releases/download/root/test.video.2.1080p.webm",
 
-        // ✅ 新增：挂载直链 ZIP 文件
+        // ✅ 之前的 ZIP
         "/hOkcfVzT.zip": "https://cloud.chenyong.eu.org/file/hOkcfVzT.zip",
+
+        // ✅ 新增：轻松签 ipa 文件
+        "/轻松签+-5.0.2.ipa": "https://cloud.chenyong.eu.org/file/Z045M1SD.octet-stream",
       }),
       downProxy: cloudflarePagesDownProxy(),
     },
@@ -99,7 +100,7 @@ export default defineUserConfig({
       }),
     },
 
-    // ========= 示例 6：读取 Gitee 仓库文件树 =========
+    // ========= 示例 6：Gitee 仓库 =========
     {
       mountPath: "/gitee测试/仓库",
       analysis: giteeReposAnalysis({
@@ -108,7 +109,7 @@ export default defineUserConfig({
       }),
     },
 
-    // ========= 示例 7：读取 GitHub 仓库文件树 + 代理 =========
+    // ========= 示例 7：GitHub 仓库文件树 + 代理 =========
     {
       mountPath: "/ProgrammingVTuberLogos",
       analysis: githubReposAnalysis({
