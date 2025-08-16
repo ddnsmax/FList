@@ -1,10 +1,5 @@
-// --------------------------- 
-// VuePress 站点配置（可直接修改版）
-// ---------------------------
-
 import { viteBundler } from '@vuepress/bundler-vite'
 import { defineUserConfig } from 'vuepress'
-
 import { FileList } from './src/node/index.js'
 import { githubReleasesFilesAnalysis } from "./src/node/analysis/githubReleasesFilesAnalysis/index.js";
 import { cloudflarePagesDownProxy } from "./src/node/proxy/cloudflarePagesDownProxy/index.js";
@@ -16,9 +11,6 @@ import { giteeReleasesFilesAnalysis } from './src/node/analysis/giteeReleasesFil
 import { githubReposAnalysis } from './src/node/analysis/githubReposAnalysis/index.js';
 import { giteeReposAnalysis } from './src/node/analysis/giteeReposAnalysis/index.js';
 
-/**
- * 站点配置文件
- */
 export default defineUserConfig({
   bundler: viteBundler(),
   pagePatterns: [],
@@ -30,6 +22,7 @@ export default defineUserConfig({
   shouldPrefetch: true,
 
   theme: FileList([
+    // 保留 GitHub Releases 挂载
     {
       mountPath: "/KnapsackToGo4下载",
       analysis: githubReleasesFilesAnalysis({
@@ -49,40 +42,39 @@ export default defineUserConfig({
       downProxy: cloudflarePagesDownProxy(),
     },
 
-    // ========= 直链文件树（已清空旧的视频示例，按你的分类重建）=========
+    // ========= 手工维护文件树：目录体系 + 已归类直链 =========
     {
       mountPath: "/",
       analysis: fileUrlTreeAnalysis({
-        // 图片、视频单独目录（目前暂无具体文件，后续直接在此处追加即可）
-        // "/图片/xxx.png": "https://example.com/xxx.png",
-        // "/视频/xxx.mp4": "https://example.com/xxx.mp4",
+        // 目录清单（空目录不会显示，添加文件后才会出现）：
+        // /微信/   /游戏/   /ipa软件/   /ipa插件/
+        // /源码/   /安卓软件/   /Mac软件/   /windows/
+        // /图片/   /视频/
 
-        // 其余目录名称按你提供的截图：微信 / 游戏 / ipa软件 / ipa插件 / 源码 / 安卓软件 / Mac软件 / windows
+        // ipa 文件
+        "/ipa软件/轻松签+-5.0.2.ipa":
+          "https://cloud.chenyong.eu.org/file/Z045M1SD.octet-stream",
 
-        // ✅ iOS 安装包（ipa）——放到 /ipa软件
-        "/ipa软件/轻松签+-5.0.2.ipa": "https://cloud.chenyong.eu.org/file/Z045M1SD.octet-stream",
+        // Windows 压缩包
+        "/windows/hOkcfVzT.zip":
+          "https://cloud.chenyong.eu.org/file/hOkcfVzT.zip",
 
-        // （可选）如果你做了 OTA 安装页和清单，可以给一个安装入口
-        // "/ipa软件/轻松签安装.html": "/install.html",
+        // 图片文件
+        "/图片/1755376083621_4442da504356e7c1c4fac635b1b5ea6c.png":
+          "https://cloud.993613.xyz/file/1755376083621_4442da504356e7c1c4fac635b1b5ea6c.png",
 
-        // ✅ ZIP（暂按常见习惯归到 windows；若你希望换目录，只改左侧路径）
-        "/windows/hOkcfVzT.zip": "https://cloud.chenyong.eu.org/file/hOkcfVzT.zip",
-
-        // 下面这些目录先占位说明：等有文件时，按类型归到对应目录新增映射即可
-        // "/微信/README.txt": "https://example.com/placeholder",       // 有需要再加
-        // "/游戏/README.txt": "https://example.com/placeholder",
-        // "/ipa插件/README.txt": "https://example.com/placeholder",
-        // "/源码/README.txt": "https://example.com/placeholder",
-        // "/安卓软件/README.txt": "https://example.com/placeholder",
-        // "/Mac软件/README.txt": "https://example.com/placeholder",
+        // 视频示例
+        "/视频/test2/文件树-测试视频1.mp4":
+          "https://github.com/jianjianai/FList/releases/download/root/test.video.2.1080p.webm",
+        "/视频/文件树测试/文件树-测试视频1.mp4":
+          "https://github.com/jianjianai/FList/releases/download/root/test.video.2.1080p.webm",
+        "/视频/文件树-测试视频1.mp4":
+          "https://github.com/jianjianai/FList/releases/download/root/test.video.2.1080p.webm",
       }),
-      // 如果直链在你这边访问较慢或有跨域，保持代理；否则可以去掉
       downProxy: cloudflarePagesDownProxy(),
-      // 其它平台示例：
-      // downProxy: vercelDownProxy(),
-      // downProxy: netlifyDownProxy(),
     },
 
+    // 其它演示挂载
     {
       mountPath: "/huggingface测试",
       analysis: huggingFaceDatasetsAnalysis({
