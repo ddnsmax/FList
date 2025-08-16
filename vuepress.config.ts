@@ -1,4 +1,4 @@
-import { viteBundler } from '@vuepress/bundler-vite'  
+import { viteBundler } from '@vuepress/bundler-vite' 
 import { defineUserConfig } from 'vuepress'
 
 import { FileList } from './src/node/index.js'
@@ -31,17 +31,17 @@ export default defineUserConfig({
         "/视频/文件树-测试视频1.mp4":
           "https://github.com/jianjianai/FList/releases/download/root/test.video.2.1080p.webm",
 
-        // ── ipa 软件 ──────────────────────────────
+        // ── ipa 软件 ──────────────────────────
         "/ipa软件/轻松签+-5.0.2.ipa":
           "https://cloud.chenyong.eu.org/file/Z045M1SD.octet-stream",
 
-        // ── Windows ──────────────────────────────
+        // ── Windows 文件 ──────────────────────
+        "/windows/hOkcfVzT.zip":
+          "https://cloud.chenyong.eu.org/file/hOkcfVzT.zip",
         "/windows/Daxiang-win32_ia32-7.10.0-production.exe":
           "https://github.com/ddnsmax/-/releases/download/01/Daxiang-win32_ia32-7.10.0-production-7ebe4e5_1747902290088.exe",
 
-        // ── 源码 ──────────────────────────────
-        "/源码/字典.zip":
-          "https://www.ilanzou.com/s/AULZVOdG",
+        // ── 其他目录（微信/游戏/ipa插件/源码/安卓软件/Mac软件）暂不添加
       }),
       downProxy: cloudflarePagesDownProxy(),
     },
