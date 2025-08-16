@@ -19,30 +19,29 @@ export default defineUserConfig({
     {
       mountPath: "/",
       analysis: fileUrlTreeAnalysis({
-        // ── 图片 ──────────────────────────────
-        "/图片/1755376083621_4442da504356e7c1c4fac635b1b5ea6c.png":
-          "https://cloud.993613.xyz/file/1755376083621_4442da504356e7c1c4fac635b1b5ea6c.png",
-
-        // ── 视频 ──────────────────────────────
-        "/视频/test2/文件树-测试视频1.mp4":
-          "https://github.com/jianjianai/FList/releases/download/root/test.video.2.1080p.webm",
-        "/视频/文件树测试/文件树-测试视频1.mp4":
-          "https://github.com/jianjianai/FList/releases/download/root/test.video.2.1080p.webm",
-        "/视频/文件树-测试视频1.mp4":
-          "https://github.com/jianjianai/FList/releases/download/root/test.video.2.1080p.webm",
-
-        // ── ipa 软件 ──────────────────────────
-        "/ipa软件/轻松签+-5.0.2.ipa":
-          "https://cloud.chenyong.eu.org/file/Z045M1SD.octet-stream",
-
-        // ── Windows 文件 ──────────────────────
-        "/windows/hOkcfVzT.zip":
-          "https://cloud.chenyong.eu.org/file/hOkcfVzT.zip",
-        "/windows/Daxiang-win32_ia32-7.10.0-production.exe":
-          "https://github.com/ddnsmax/-/releases/download/01/Daxiang-win32_ia32-7.10.0-production-7ebe4e5_1747902290088.exe",
-
-        // ── 其他目录（微信/游戏/ipa插件/源码/安卓软件/Mac软件）暂不添加
+        // 统一结构：每个一级目录下，仅有一个二级目录“测试文件夹”，里面只放同一文件
+        "/图片/测试文件夹/ubuntu-22.04.5-live-server-amd64.iso":
+          "https://github.com/ddnsmax/cloud/releases/download/1.0/ubuntu-22.04.5-live-server-amd64.iso",
+        "/视频/测试文件夹/ubuntu-22.04.5-live-server-amd64.iso":
+          "https://github.com/ddnsmax/cloud/releases/download/1.0/ubuntu-22.04.5-live-server-amd64.iso",
+        "/微信/测试文件夹/ubuntu-22.04.5-live-server-amd64.iso":
+          "https://github.com/ddnsmax/cloud/releases/download/1.0/ubuntu-22.04.5-live-server-amd64.iso",
+        "/游戏/测试文件夹/ubuntu-22.04.5-live-server-amd64.iso":
+          "https://github.com/ddnsmax/cloud/releases/download/1.0/ubuntu-22.04.5-live-server-amd64.iso",
+        "/ipa软件/测试文件夹/ubuntu-22.04.5-live-server-amd64.iso":
+          "https://github.com/ddnsmax/cloud/releases/download/1.0/ubuntu-22.04.5-live-server-amd64.iso",
+        "/ipa插件/测试文件夹/ubuntu-22.04.5-live-server-amd64.iso":
+          "https://github.com/ddnsmax/cloud/releases/download/1.0/ubuntu-22.04.5-live-server-amd64.iso",
+        "/源码/测试文件夹/ubuntu-22.04.5-live-server-amd64.iso":
+          "https://github.com/ddnsmax/cloud/releases/download/1.0/ubuntu-22.04.5-live-server-amd64.iso",
+        "/安卓软件/测试文件夹/ubuntu-22.04.5-live-server-amd64.iso":
+          "https://github.com/ddnsmax/cloud/releases/download/1.0/ubuntu-22.04.5-live-server-amd64.iso",
+        "/Mac软件/测试文件夹/ubuntu-22.04.5-live-server-amd64.iso":
+          "https://github.com/ddnsmax/cloud/releases/download/1.0/ubuntu-22.04.5-live-server-amd64.iso",
+        "/windows/测试文件夹/ubuntu-22.04.5-live-server-amd64.iso":
+          "https://github.com/ddnsmax/cloud/releases/download/1.0/ubuntu-22.04.5-live-server-amd64.iso",
       }),
+      // 仅在 Cloudflare Pages 部署且需要跨域/加速时保留
       downProxy: cloudflarePagesDownProxy(),
     },
   ])
