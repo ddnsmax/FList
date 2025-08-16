@@ -16,15 +16,14 @@ export default defineUserConfig({
   shouldPrefetch: true,
 
   theme: FileList([
-    // 只保留直链文件树，其他挂载与示例全部清除
     {
       mountPath: "/",
       analysis: fileUrlTreeAnalysis({
-        // ── 图片 ──────────────────────────────
+        // 图片
         "/图片/1755376083621_4442da504356e7c1c4fac635b1b5ea6c.png":
           "https://cloud.993613.xyz/file/1755376083621_4442da504356e7c1c4fac635b1b5ea6c.png",
 
-        // ── 视频 ──────────────────────────────
+        // 视频
         "/视频/test2/文件树-测试视频1.mp4":
           "https://github.com/jianjianai/FList/releases/download/root/test.video.2.1080p.webm",
         "/视频/文件树测试/文件树-测试视频1.mp4":
@@ -32,19 +31,17 @@ export default defineUserConfig({
         "/视频/文件树-测试视频1.mp4":
           "https://github.com/jianjianai/FList/releases/download/root/test.video.2.1080p.webm",
 
-        // ── ipa 软件 ──────────────────────────────
+        // ipa 软件
         "/ipa软件/轻松签+-5.0.2.ipa":
           "https://cloud.chenyong.eu.org/file/Z045M1SD.octet-stream",
 
-        // ── Windows 压缩包 ──────────────────────────────
+        // Windows 压缩包
         "/windows/hOkcfVzT.zip":
           "https://cloud.chenyong.eu.org/file/hOkcfVzT.zip",
 
-        // ── 源码 ──────────────────────────────
-        "/源码/字典.zip":
-          "https://www.ilanzou.com/s/AULZVOdG",
+        // 源码（目前用下载跳转页，等你有直链后再替换成直链）
+        "/源码/字典.zip": "/lanzou-字典.html",
       }),
-      // 若直链访问慢或有 CORS 问题可保留；不是 Cloudflare Pages 可移除
       downProxy: cloudflarePagesDownProxy(),
     },
   ])
