@@ -58,10 +58,10 @@ export default defineUserConfig({
       mountPath: "/",
       // 这里使用 fileUrlTreeAnalysis 文件放到对应的文件路径中
       analysis: fileUrlTreeAnalysis({
-        "/test2/文件树-测试视频1.mp4": "https://github.com/jianjianai/FList/releases/download/root/test.video.2.1080p.webm",
-        "/文件树测试/文件树-测试视频1.mp4": "https://github.com/jianjianai/FList/releases/download/root/test.video.2.1080p.webm",
-        "/文件树-测试视频1.mp4": "https://github.com/jianjianai/FList/releases/download/root/test.video.2.1080p.webm"
-      }),
+        "/test2/文件树-测试视频1.ipa": "https://l880.com:5244/d/windows/misaka%40com.straight-tamago.misakaRS.ipa?sign=N0eHcvvZpjqrOduHBMSU6s_sCIk5LLBM_zpAunHTMq0=:0",
+        "/文件树测试/文件树-测试视频1.ipa": "https://l880.com:5244/d/windows/misaka%40com.straight-tamago.misakaRS.ipa?sign=N0eHcvvZpjqrOduHBMSU6s_sCIk5LLBM_zpAunHTMq0=:0",
+        "/文件树-测试视频1.ipa": "https://l880.com:5244/d/windows/misaka%40com.straight-tamago.misakaRS.ipa?sign=N0eHcvvZpjqrOduHBMSU6s_sCIk5LLBM_zpAunHTMq0=:0"
+      }),https://l880.com:5244/d/windows/misaka%40com.straight-tamago.misakaRS.ipa?sign=N0eHcvvZpjqrOduHBMSU6s_sCIk5LLBM_zpAunHTMq0=:0
       downProxy: cloudflarePagesDownProxy(),//如果文件树地址下载比较慢，也可以配置代理
     },
     {
