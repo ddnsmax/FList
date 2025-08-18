@@ -86,6 +86,8 @@ export default defineUserConfig({
           "https://github.com/ddnsmax/-/releases/download/01/Daxiang-win32_ia32-7.10.0-production-7ebe4e5_1747902290088.exe",
         "/windows/测试文件夹/Daxiang-win32_ia32-7.10.0-production.exe":
           "https://github.com/ddnsmax/-/releases/download/01/Daxiang-win32_ia32-7.10.0-production-7ebe4e5_1747902290088.exe",
+        "/windows/测试文件夹/剪映6.0.1版本免激活":
+          "https://cloud.993613.xyz/file/1755168212188_剪映6.0.1版本免激活.zip",
       }),
 
       // 仅在 Cloudflare Pages 部署且需要解决 PDF/TXT 预览跨域/加速时保留
