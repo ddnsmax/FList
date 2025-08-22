@@ -32,20 +32,33 @@ export default defineUserConfig({
   // 主题配置 FileList 是 vuepress 的一个主题，文件展示的功能全部由这个主题提供。
   theme: FileList([
     {
-      // 挂载路径
-      mountPath: "/KnapsackToGo4下载",
-      // 文件解析器，这里使用githubReleasesFilesAnalysis,可以解析github的release文件
-      analysis: githubReleasesFilesAnalysis({
-        // 仓库所有者的用户名
-        user: "jianjianai",
-        // 仓库所有者的仓库名
-        repository: "KnapsackToGo4",
-        // github 授权 Token, process.env.xxx  xxx 是环境变量名称。可以通过设置 githubToken 环境变量来配置
-        authorizationToken: process.env.githubToken,
-        // 分页大小，不懂得话就当作取最新的多少个标签吧。
-        per_page: 10,
-      }),
-    },
+      {
+  // 挂载路径
+  mountPath: "/cloud下载",
+  // 文件解析器，这里使用 githubReleasesFilesAnalysis，可以解析 GitHub 的 release 文件
+  analysis: githubReleasesFilesAnalysis({
+    // 仓库所有者的用户名
+    user: "ddnspro",
+    // 仓库所有者的仓库名
+    repository: "cloud",
+    // GitHub 授权 Token，process.env.xxx  xxx 是环境变量名称。可以通过设置 githubToken 环境变量来配置
+    authorizationToken: process.env.githubToken,
+    // 分页大小，不懂的话就当作取最新的多少个标签吧
+    per_page: 10,
+  }),
+},
+{
+  mountPath: "/",
+  analysis: githubReleasesFilesAnalysis({
+    user: "ddnspro",
+    repository: "cloud",
+    authorizationToken: process.env.githubToken,
+  }),
+  // 下载代理配置，支持多个平台，参考: https://jjaw.cn/2024/8/3/flist-config-porxy/
+  // 这是为了解决 GitHub 的国内下载慢和跨域问题，建议配置；不然 pdf、txt、md 等文件因为跨域无法预览
+  // 如果你使用的不是 Cloudflare Pages 部署需要删掉这一行，因为如果不是 Cloudflare Pages 部署，这个代理是无法正常工作的
+  downProxy: cloudflarePagesDownProxy(),
+},
     {
       mountPath: "/",
       analysis: githubReleasesFilesAnalysis({ user: "jianjianai", repository: "FList" , authorizationToken: process.env.githubToken,}),
